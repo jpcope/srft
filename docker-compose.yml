@@ -1,0 +1,37 @@
+version: '2'
+volumes:
+  dependencies:
+services:
+  dependencies:
+    image: srft-test
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: ['bash', '-c', 'exit 0']
+    volumes:
+      - dependencies:/opt/service/.venv
+  srft-test:
+    container_name: srft-test
+    image: srft-test:latest
+    entrypoint: ['/init']
+    # entrypoint: ['sleep', '9999']
+    depends_on:
+      - dependencies
+    ports:
+      - '5000:80'
+    tty: true
+    volumes:
+      - ${PWD}:/opt/service
+      - ${PWD}/docker/root/etc/services.d:/etc/services.d
+      - dependencies:/opt/service/.venv
+    environment:
+      - ENV=QA
+      - DD_AGENT_HOST=docker.for.mac.host.internal
+      - DATADOG_SERVICE_NAME=srft-test
+      - USE_DDTRACE_RUN=true
+      # - USE_DDTRACE_RUN=false
+      - LOGGER_CLASS=app.logging.StructuredLogger
+      # - LOGGER_CLASS=applogging.StructuredLogger
+    restart: always
+    external_links:
+      - dd-agent

@@ -1,0 +1,12 @@
+# If you put any secrets or local-cache into your repo you do not want in images
+# you must ignore them here
+# example:
+# ./manual-prod-secrets.yml
+
+-# Byte-compiled / optimized / DLL files
+-__pycache__/
+-**.pyc
+-.pytest_cache
+
+# not relevent to a container context
+./.venv/
