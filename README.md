@@ -73,7 +73,7 @@ curl -Nvs http://localhost:5000/healthcheck
 
 ## How this document describes an error
 
-The log statements in the startup routine describe when the server has started listening for requests and when worker greenlets are ready to handle requests. Because the log statements are missing in the actual result and the test case fails to establish a connection it can be determined that the gunucorn startup/listen routine is never called. Because the process never halts or crashes a similar deduction can be made that a race condition or deadlock must exist under this specific configuration.
+The log statements in the startup routine describe when the server has started listening for requests and when worker greenlets are ready to handle requests. Because the log statements are missing in the actual result and the test case fails to establish a connection it can be determined that the gunicorn startup/listen routine is never called. Because the process never halts or crashes a similar deduction can be made that a race condition or deadlock must exist under this specific configuration.
 
 ## Conclusion
 
