@@ -56,6 +56,8 @@ docker-compose up
 
 ```bash
 curl -Nvs http://localhost:5000/healthcheck
+# or open http://localhost:5000/healthcheck in a browser
+# you should get a 200 'ok' response if the server is listening properly
 ```
 
 ### Try workaround 1
@@ -68,6 +70,10 @@ curl -Nvs http://localhost:5000/healthcheck
 1. Revert any changes to docker-compose.yml
 1. Change LOGGER_CLASS env variable to applogging.StructuredLogger
 1. Then retry test
+
+## How this document describes an error
+
+The log statements in the startup routine describe when the server has started listening for requests and when worker greenlets are ready to handle requests. Because the log statements are missing in the actual result and the test case fails to establish a connection it can be determined that the gunucorn startup/listen routine is never called. Because the process never halts or crashes a similar deduction can be made that a race condition or deadlock must exist under this specific configuration.
 
 ## Conclusion
 
