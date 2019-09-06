@@ -6,7 +6,7 @@ name = "pypi"
 [dev-packages]
 
 [packages]
-ddtrace = "*"
+ddtrace = ">=0.21.0"
 gevent = "*"
 flask = "*"
 gunicorn = "*"

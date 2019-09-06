@@ -79,7 +79,11 @@ The log statements in the startup routine describe when the server has started l
 
 1. Either python module imports have a bug or the ddtrace patcher has a bug that leads to an import deadlock given this example architecture.
 1. Looking for feedback on how to fix this issue.
-1. [Issue opened with vendor](https://github.com/DataDog/dd-trace-py/issues/827) - STATUS = UNRESOLVED
+1. [Issue opened with vendor](https://github.com/DataDog/dd-trace-py/issues/827) - STATUS = RESOLVED
+
+# Resolution
+
+1. Use a version of ddtrace >= 0.21.0
 
 ### If you are interested in running the ddagent sidecar at the same time:
 
